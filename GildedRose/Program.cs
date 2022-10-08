@@ -59,7 +59,14 @@ namespace GildedRose
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            var factory = new ItemFactory();
+            for (int i = 0; i < Items.Count; i++)
+            {
+                var item = factory.Produce(Items[i]);
+                item.UpdateItem(Items[i]);
+            }
+            
+            /*for (var i = 0; i < Items.Count; i++)
             {
                 if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
@@ -130,7 +137,7 @@ namespace GildedRose
                         }
                     }
                 }
-            }
+            }*/
         }
 
     }
@@ -142,6 +149,25 @@ namespace GildedRose
         public int SellIn { get; set; }
 
         public int Quality { get; set; }
+    }
+
+
+    public class ItemFactory
+    {
+        public IUpdatable Produce(Item item)
+        {
+            switch (item.Name)
+            {
+                case "Aged Brie":
+                    return new CheeseItem();
+                case "Sulfuras, Hand of Ragnaros":
+                    return new LegendaryItem();
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    return new BackstagePassItem();
+                default:
+                    return new NormalItem();
+            }
+        }
     }
 
 }

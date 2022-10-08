@@ -9,6 +9,11 @@ namespace GildedRose
             {
                 item.Quality++;
             }
+            if (item.Quality < 50 && item.SellIn < 0)
+            {
+                item.Quality++;
+            }
+
         }
     }
 }

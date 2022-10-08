@@ -68,12 +68,12 @@ public class ProgramTests
     public void DexterityVest_Quality_test_After_20_Day()
     {
         program.Items.Add(new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20});
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 20; i++)
         {
             program.UpdateQuality();
         }
         program.Items[0].Quality.Should().Be(0);
-        program.Items[0].SellIn.Should().Be(-5);
+        program.Items[0].SellIn.Should().Be(-10);
     }
 
     [Fact]
