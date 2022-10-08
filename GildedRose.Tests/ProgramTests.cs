@@ -30,6 +30,7 @@ public class ProgramTests
     {
         program.Items.Add(new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20});
         program.Items[0].Quality.Should().Be(20);
+        program.Items[0].SellIn.Should().Be(10);
     }
 
     [Fact]
@@ -38,6 +39,7 @@ public class ProgramTests
         program.Items.Add(new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20});
         program.UpdateQuality();
         program.Items[0].Quality.Should().Be(19);
+        program.Items[0].SellIn.Should().Be(9);
     }
     [Fact]
     public void DexterityVest_Quality_test_After_11_Day()
@@ -48,6 +50,7 @@ public class ProgramTests
             program.UpdateQuality();
         }
         program.Items[0].Quality.Should().Be(8);
+        program.Items[0].SellIn.Should().Be(-1);
     }
 
     [Fact]
@@ -59,6 +62,7 @@ public class ProgramTests
             program.UpdateQuality();
         }
         program.Items[0].Quality.Should().Be(0);
+        program.Items[0].SellIn.Should().Be(-5);
     }
     [Fact]
     public void DexterityVest_Quality_test_After_20_Day()
@@ -69,6 +73,7 @@ public class ProgramTests
             program.UpdateQuality();
         }
         program.Items[0].Quality.Should().Be(0);
+        program.Items[0].SellIn.Should().Be(-5);
     }
 
     [Fact]
@@ -77,6 +82,7 @@ public class ProgramTests
         program.Items.Add(new Item { Name = "Aged Brie", SellIn = 2, Quality = 0 });
         program.UpdateQuality();
         program.Items[0].Quality.Should().Be(1);
+        program.Items[0].SellIn.Should().Be(1);
     }
     [Fact]
     public void AgedBrie_test_After_10_Day()
@@ -87,6 +93,7 @@ public class ProgramTests
             program.UpdateQuality();
         }
         program.Items[0].Quality.Should().Be(18);
+        program.Items[0].SellIn.Should().Be(-8);
     }
     [Fact]
     public void AgedBrie_test_After_100_Day()
@@ -97,6 +104,7 @@ public class ProgramTests
             program.UpdateQuality();
         }
         program.Items[0].Quality.Should().Be(50);
+        program.Items[0].SellIn.Should().Be(-98);
     }
     [Fact]
     public void Sulfuras_Should_Stay_The_Same()
@@ -107,6 +115,7 @@ public class ProgramTests
             program.UpdateQuality();
         }
         program.Items[0].Quality.Should().Be(80);
+        program.Items[0].SellIn.Should().Be(0);
     }
     [Fact]
     public void BackstagePasses_Before_10_Days()
@@ -119,6 +128,7 @@ public class ProgramTests
                 });
         program.UpdateQuality();
         program.Items[0].Quality.Should().Be(21);
+        program.Items[0].SellIn.Should().Be(14);
     }
     [Fact]
     public void BackstagePasses_10_Days_Or_Less()
@@ -131,6 +141,7 @@ public class ProgramTests
                 });
         program.UpdateQuality();
         program.Items[0].Quality.Should().Be(22);
+        program.Items[0].SellIn.Should().Be(8);
     }
     [Fact]
     public void BackstagePasses_5_Days_Or_Less()
@@ -143,6 +154,7 @@ public class ProgramTests
                 });
         program.UpdateQuality();
         program.Items[0].Quality.Should().Be(23);
+        program.Items[0].SellIn.Should().Be(3);
     }
     [Fact]
     public void BackstagePasses_Day_After_SellIn_Quality_Should_Be_0()
@@ -158,6 +170,7 @@ public class ProgramTests
             program.UpdateQuality();
         }
         program.Items[0].Quality.Should().Be(0);
+        program.Items[0].SellIn.Should().Be(-1);
     }
-  
+
 }
