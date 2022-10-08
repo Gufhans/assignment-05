@@ -173,4 +173,46 @@ public class ProgramTests
         program.Items[0].SellIn.Should().Be(-1);
     }
 
+    [Fact]
+    public void Conjured_After_1_Day()
+    {
+        program.Items.Add(new Item {Name = "Conjured Mana Cake", SellIn = 10, Quality = 20});
+        program.UpdateQuality();
+        program.Items[0].Quality.Should().Be(18);
+        program.Items[0].SellIn.Should().Be(9);
+    }
+    [Fact]
+    public void Conjured_After_10_Day()
+    {
+        program.Items.Add(new Item {Name = "Conjured Mana Cake", SellIn = 10, Quality = 20});
+        for (int i = 0; i < 10; i++)
+        {
+            program.UpdateQuality();
+        }
+        program.Items[0].Quality.Should().Be(0);
+        program.Items[0].SellIn.Should().Be(0);
+    }
+    [Fact]
+    public void Conjured_After_20_Day()
+    {
+        program.Items.Add(new Item {Name = "Conjured Mana Cake", SellIn = 10, Quality = 20});
+        for (int i = 0; i < 20; i++)
+        {
+            program.UpdateQuality();
+        }
+        program.Items[0].Quality.Should().Be(0);
+        program.Items[0].SellIn.Should().Be(-10);
+    }
+    [Fact]
+    public void Lower_SellIn_Higher_Quality_Conjured_After_10_Day()
+    {
+        program.Items.Add(new Item {Name = "Conjured Mana Cake", SellIn = 5, Quality = 40});
+        for (int i = 0; i < 10; i++)
+        {
+            program.UpdateQuality();
+        }
+        program.Items[0].Quality.Should().Be(10);
+        program.Items[0].SellIn.Should().Be(-5);
+    }
+
 }

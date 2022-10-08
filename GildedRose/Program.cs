@@ -164,6 +164,8 @@ namespace GildedRose
                     return new LegendaryItem();
                 case "Backstage passes to a TAFKAL80ETC concert":
                     return new BackstagePassItem();
+                case "Conjured Mana Cake":
+                    return new ConjuredItem();
                 default:
                     return new NormalItem();
             }
